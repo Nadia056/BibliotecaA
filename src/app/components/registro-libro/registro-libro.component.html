@@ -1,0 +1,77 @@
+
+<header class="header sticky-top">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm">
+
+        <div class="container"><a class="navbar-brand" href="#">
+
+            </a>
+
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a class="nav-link" href="/biblioteca">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/registroLibro">Registrar Libros<span
+                        class="sr-only">(current)</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="/prestamos">Registrar Prestamos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/prestamos2">Historial Prestamos</a></li>
+
+                    <button (click)="logout()" class="btn ">logout</button>
+                </ul>
+            </div>
+            <div class="typing">
+                <pre class="text-uppercase text-black">Welcome</pre>
+            </div>
+        </div>
+
+    </nav>
+    <br>
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+      <h2 class="text-center">Registrar Libro</h2>
+        <form (ngSubmit)="registro()" class="form-container" #libroForm="ngForm">
+          <div class="form-group">
+            <label for="titulo">Titulo</label>
+            <input [(ngModel)]="book.titulo" type="text" id="titulo" name="titulo"
+              class="form-control" placeholder="Actualiza titulo" />
+          </div>
+          <div class="form-group">
+            <label for="autor">Autor</label>
+            <input [(ngModel)]="book.autor" type="text" id="autor" name="autor"
+              class="form-control" placeholder="Actualiza autor" />
+          </div>
+          <div class="form-group">
+            <label for="editorial">Editorial</label>
+            <input [(ngModel)]="book.editorial" type="text" id="editorial" name="editorial"
+              class="form-control" placeholder="Actualiza editorial" />
+          </div>
+          <div class="form-group">
+            <label for="year">Publicacion</label>
+            <input [(ngModel)]="book.year" type="text" id="year" name="year" class="form-control" placeholder="Actualiza año de Publicacion" />
+          </div>
+          <div class="form-group">
+            <label for="year">Genero</label>
+            <input [(ngModel)]="book.genero" type="text" id="genero" name="genero" class="form-control" placeholder="Actualiza año de Publicacion" />
+          </div>
+          <div class="form-group">
+            <label for="form-label">Estado</label>
+            <select class="form-control" name="is_active" [(ngModel)]="book.estado">
+              <option value="Disponible">Disponible</option>
+              <option value="Prestado">Prestado</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="codigo">Codigo</label>
+            <input [(ngModel)]="book.codigo" type="text" id="codigo" name="codigo"
+              class="form-control" placeholder="Actualiza Codigo" />
+          </div>
+  
+          <br>
+          <button type="submit" class="btn btn-primary btn-block">Registrar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,71 @@
+<header class="header sticky-top">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm">
+
+        <div class="container"><a class="navbar-brand" href="#">
+
+            </a>
+
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a class="nav-link" href="/biblioteca">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/registroLibro">Registrar Libros</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/prestamos">Registrar Prestamos<span
+                                class="sr-only">(current)</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="/prestamos2">Historial Prestamos</a></li>
+
+                    <button (click)="logout()" class="btn ">logout</button>
+                </ul>
+            </div>
+            <div class="typing">
+                <pre class="text-uppercase text-black">Welcome</pre>
+            </div>
+        </div>
+
+    </nav>
+    <br>
+    <br>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2 class="text-center">Registrar Prestamo</h2>
+                <br>
+                <form (ngSubmit)="registro()" class="form-container" #libroForm="ngForm">
+                    <div class="form-group">
+                        <label for="form-label">Libro</label>
+                        <select class="form-control" name="book_id" [(ngModel)]="prestamo.id_libro">
+                            <option *ngFor="let libro of book" [value]="libro.id">{{libro.titulo}}</option>
+                          </select>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="form-label">Cliente</label>
+                        <select class="form-control" name="is_active" [(ngModel)]="prestamo.id_usuario">
+                            <option *ngFor="let clients of clients" [value]="clients.id">{{clients.nombre}}</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="year">Fecha de Prestamo</label>
+                        <input [(ngModel)]="prestamo.fecha_prestamo" type="text" id="year" name="year" class="form-control"
+                            placeholder="Actualiza año de Publicacion" />
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="year">Fecha de Devoluvion</label>
+                        <input [(ngModel)]="prestamo.fecha_devolucion" type="text" id="genero" name="genero" class="form-control"
+                            placeholder="Actualiza año de Publicacion" />
+                    </div>
+                    <br>
+                   
+
+                    <br>
+                    <button type="submit" class="btn btn-primary btn-block">Registrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    F

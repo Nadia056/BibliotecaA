@@ -1,0 +1,24 @@
+
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet'
+  type='text/css'>
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+
+<div class="testbox">
+  <h1>Registrarse</h1>
+  <form (ngSubmit)="registro()" #form="ngForm">
+    <hr>
+ 
+
+    <label id="icon" for="name"><i class="icon-user"></i></label>
+    <input type="text" name="name" id="name" placeholder="Nombre" required [(ngModel)]="nombre" />
+    <label id="icon" for="email"><i class="icon-envelope "></i></label>
+    <input type="text" name="email" id="email" placeholder="Email" required [(ngModel)]="email" />
+    <label id="icon" for="password"><i class="icon-shield"></i></label>
+    <input type="password" name="password" id="password" [(ngModel)]="password" placeholder="Password" required />
+  
+    <hr>
+    <button type="submit" class="btn btn-danger">Registrarme</button>
+</form>
+
+</div>
+

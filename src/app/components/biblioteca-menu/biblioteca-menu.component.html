@@ -1,0 +1,112 @@
+<header class="header sticky-top">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm">
+
+        <div class="container"><a class="navbar-brand" href="#">
+
+            </a>
+
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a class="nav-link" href="/biblioteca">Home <span
+                                class="sr-only">(current)</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="/registroLibro">Registrar Libros</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/prestamos">Registrar Prestamos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/prestamos2">Historial Prestamos</a></li>
+
+                    <button (click)="logout()" class="btn ">logout</button>
+                </ul>
+            </div>
+            <div class="typing">
+                <pre class="text-uppercase text-black">Welcome</pre>
+            </div>
+        </div>
+
+    </nav>
+
+    <div class="container">
+        <h1>Libros</h1>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Titulo</th>
+                    <th>Autor</th>
+                    <th>Editorial</th>
+                    <th>Publicacion</th>
+                    <th>Genero</th>
+                    <th>Estado</th>
+                    <th>Codigo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let book of books">
+                    <td>{{ book.id }}</td>
+                    <td>{{ book.titulo }}</td>
+                    <td>{{ book.autor }}</td>
+                    <td>{{ book.editorial }}</td>
+                    <td>{{ book.year }}</td>
+                    <td>{{ book.genero }}</td>
+                    <td>{{ book.estado }}</td>
+                    <td>{{ book.codigo }}</td>
+                    <td><button type="button" class="btn btn-primary" (click)="editarLibro(book)">Editar</button></td>
+                    <td><button type="button" class="btn btn-danger" (click)="deleteBook(book)">Eliminar</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Back button -->
+        <a href="/registroLibro" class="btn btn-secondary">Registrar Nuevo Libro</a>
+    </div>
+
+    <!-- modal content -->
+    <ng-template #contenido let-modal>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Editar datos</h4>
+                <button class="close" type="button" (click)="modal.dismiss()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="updateBook()" #form="ngForm">
+                    <div class="form-group">
+                        <label for="titulo">Titulo</label>
+                        <input [(ngModel)]="selectedBook.titulo" type="text" id="titulo" name="titulo"
+                            class="form-control" placeholder="Actualiza titulo" />
+                    </div>
+                    <div class="form-group">
+                        <label for="autor">autor</label>
+                        <input [(ngModel)]="selectedBook.autor" type="text" id="autor" name="autor"
+                            class="form-control" placeholder="Actualiza autor" />
+                    </div>
+                    <div class="form-group">
+                        <label for="editorial">Editorial</label>
+                        <input [(ngModel)]="selectedBook.editorial" type="text" id="editorial" name="editorial"
+                            class="form-control" placeholder="Actualiza editorial" />
+                    </div>
+                    <div class="form-group">
+                        <label for="year">Publicacion</label>
+                        <input [(ngModel)]="selectedBook.year" type="text" id="year" name="year" class="form-control" placeholder="Actualiza año de Publicacion" />
+                      </div>
+                      <div class="form-outline mb-4"  >
+                        <label for="form-label">Estado</label>
+                        <select class="form-control" name="is_active" [(ngModel)]="selectedBook.estado" >
+                          <option value="Disponible">Disponible</option>
+                          <option value="Prestado">Prestado</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="codigo">Codigo</label>
+                        <input [(ngModel)]="selectedBook.codigo" type="text" id="codigo" name="codigo"
+                            class="form-control" placeholder="Actualiza Codigo" />
+                    </div>
+
+                    <br>
+                    <button type="submit" class="btn btn-primary btn-block">Actualizar</button>
+                </form>
+            </div>
+
+        </div>
+    </ng-template>
