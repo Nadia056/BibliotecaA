@@ -31,40 +31,40 @@
     <div class="row justify-content-center">
       <div class="col-md-6">
       <h2 class="text-center">Registrar Libro</h2>
-        <form (ngSubmit)="registro()" class="form-container" #libroForm="ngForm">
+        <form [formGroup]="formulario" (ngSubmit)="registro()" class="form-container" #libroForm="ngForm">
           <div class="form-group">
             <label for="titulo">Titulo</label>
-            <input [(ngModel)]="book.titulo" type="text" id="titulo" name="titulo"
+            <input [(ngModel)]="book.titulo" type="text" id="titulo" name="titulo" formControlName="titulo"
               class="form-control" placeholder="Actualiza titulo" />
           </div>
           <div class="form-group">
             <label for="autor">Autor</label>
-            <input [(ngModel)]="book.autor" type="text" id="autor" name="autor"
+            <input [(ngModel)]="book.autor" type="text" id="autor" name="autor" formControlName="autor"
               class="form-control" placeholder="Actualiza autor" />
           </div>
           <div class="form-group">
             <label for="editorial">Editorial</label>
-            <input [(ngModel)]="book.editorial" type="text" id="editorial" name="editorial"
+            <input [(ngModel)]="book.editorial" type="text" id="editorial" name="editorial" formControlName="editorial"
               class="form-control" placeholder="Actualiza editorial" />
           </div>
           <div class="form-group">
             <label for="year">Publicacion</label>
-            <input [(ngModel)]="book.year" type="text" id="year" name="year" class="form-control" placeholder="Actualiza año de Publicacion" />
+            <input [(ngModel)]="book.year" type="text" id="year" name="year" class="form-control" placeholder="Actualiza año de Publicacion" formControlName="year" />
           </div>
           <div class="form-group">
             <label for="year">Genero</label>
-            <input [(ngModel)]="book.genero" type="text" id="genero" name="genero" class="form-control" placeholder="Actualiza año de Publicacion" />
+            <input [(ngModel)]="book.genero" type="text" id="genero" name="genero" class="form-control" placeholder="Actualiza año de Publicacion" formControlName="genero"/>
           </div>
           <div class="form-group">
             <label for="form-label">Estado</label>
-            <select class="form-control" name="is_active" [(ngModel)]="book.estado">
+            <select class="form-control" name="is_active" [(ngModel)]="book.estado" formControlName="estado">
               <option value="Disponible">Disponible</option>
               <option value="Prestado">Prestado</option>
             </select>
           </div>
           <div class="form-group">
             <label for="codigo">Codigo</label>
-            <input [(ngModel)]="book.codigo" type="text" id="codigo" name="codigo"
+            <input [(ngModel)]="book.codigo" type="text" id="codigo" name="codigo" formControlName="codigo"
               class="form-control" placeholder="Actualiza Codigo" />
           </div>
   

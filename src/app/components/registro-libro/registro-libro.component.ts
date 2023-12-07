@@ -1,4 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Book } from 'src/app/Models/book';
 import { BookService } from 'src/app/service/book.service';
@@ -9,11 +10,24 @@ import { LoginService } from 'src/app/service/login.service';
   templateUrl: './registro-libro.component.html',
   styleUrls: ['./registro-libro.component.css']
 })
-export class RegistroLibroComponent {
+export class RegistroLibroComponent implements OnInit {
   @ViewChild('bookForm', { static: false }) libroForm: any;
 
-  constructor(private libro: BookService, private router:Router, private login:LoginService) {}
+  formulario: FormGroup;
+  constructor(private libro: BookService, private router:Router, private login:LoginService, private formBuilder: FormBuilder) {
+    this.formulario = this.formBuilder.group({
+      titulo: [""],
+      autor: [""],
+      editorial: [""],
+      year: [""],
+      genero: [""],
+      codigo: [""],
+      estado: [""]
+    });
+  }
 
+  ngOnInit(){
+  }
   book = {
     titulo: '',
     autor: '',
@@ -27,18 +41,16 @@ export class RegistroLibroComponent {
   registro() {
     console.log(this.book);
     this.libro.bookStore(this.book).subscribe(response => {
-      console.log(response);
-
       if (response === 401) {
         window.alert('Book already exists');
-        this.libroForm.reset();
       }
       if (response === 200) {
         window.alert('Book registered successfully');
-        this.libroForm.reset();
         this.router.navigate(['/biblioteca']);
+        window.location.reload();
       }
     });
+    this.formulario.reset()
   }
   logout()
   {

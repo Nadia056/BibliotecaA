@@ -22,11 +22,12 @@ export class BibliotecaMenuComponent {
   id: number | undefined;
   books: Book[] = [];
   mensaje: any;
-  pollInterval: number = 5000;
+  pollInterval: number = 8000;
   ngOnInit(): void {
+  
     this.startLongPolling();
-    this.loadBooks();
   }
+ 
 
   editarLibro(book: Book) {
     this.id = book.id;
@@ -99,6 +100,6 @@ export class BibliotecaMenuComponent {
           setTimeout(poll, this.pollInterval); // Start the next long polling request after the specified interval
         });
       };
-      poll();
+      poll(); // Start the initial long polling request
     }
 }

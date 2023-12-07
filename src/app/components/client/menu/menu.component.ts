@@ -20,9 +20,11 @@ export class MenuComponent {
   selectedBook: Partial<Book> = {};
   id: number | undefined;
   books: Book[] = [];
+  pollInterval: number = 8000;
   mensaje: any;
   ngOnInit(): void {
     this.loadBooks();
+    this.startLongPolling();
   }
   loadBooks() {
     this.libros.getBooks().subscribe((data: any) => {
@@ -44,5 +46,15 @@ export class MenuComponent {
         }
       )
   
+    }
+    startLongPolling() {
+      const poll = () => {
+        this.libros.getBooks().subscribe((data: any) => {
+          this.books = data;
+          console.log(this.books, 'libros');
+          setTimeout(poll, this.pollInterval); // Start the next long polling request after the specified interval
+        });
+      };
+      poll(); // Start the initial long polling request
     }
 }

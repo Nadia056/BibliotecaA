@@ -22,14 +22,19 @@ export class PrestamosComponent {
     id: number | undefined;
     books: Prestamo[] = [];
     mensaje: any;
+    pollInterval: number = 8000;
+
+
     ngOnInit(): void {
-      this.loadBooks();
+      this.startLongPolling();
     }
+    
     loadBooks() {
       this.libros.oneprestamo().subscribe((data: any) => {
         this.books = data;
         console.log(this.books, 'libros');
       });
+
     }
   
     logout()
@@ -45,6 +50,16 @@ export class PrestamosComponent {
           }
         )
     
+      }
+      startLongPolling() {
+        const poll = () => {
+          this.libros.oneprestamo().subscribe((data: any) => {
+            this.books = data;
+            console.log(this.books, 'libros');
+            setTimeout(poll, this.pollInterval); // Start the next long polling request after the specified interval
+          });
+        };
+        poll(); // Start the initial long polling request
       }
       
 }
